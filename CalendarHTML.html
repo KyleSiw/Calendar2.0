@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calendar</title>
+    <link href="CalendarCSS.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<div class="container">
+    <div class="calendar">
+        <div class="header">
+            <button id="prevM">
+                &#10094;
+            </button>
+            <div class="monthYear" id="monthYear"></div>
+            <button id="nextM">
+                &#10095;
+            </button>
+        </div>
+        <div class="days">
+            <div class="day">Sun</div>
+            <div class="day">Mon</div>
+            <div class="day">Tue</div>
+            <div class="day">Wed</div>
+            <div class="day">Thu</div>
+            <div class="day">Fri</div>
+            <div class="day">Sat</div>
+        </div>
+        <div class="dates" id="dates">
+
+        </div>
+    </div>
+
+    <div class="booking">
+        <div class="header">
+            <div class="bookingHeader" id="bookingHeader"></div>
+            <div class="bookingDate" id="bookingDate"></div>
+        </div>
+        <form class="bookingForm" id="bookingForm" action="">
+            <br><br>
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" placeholder="Enter your name..." required><br><br><br><br>
+
+            <label for="email">Email:  </label>
+            <input type="email" id="email" name="email" placeholder="Enter your email..." required><br><br><br><br>
+
+            <label for="reason">Reason:</label>
+            <input type="text" id="reason" name="reason" value="" placeholder="Enter your reason..." required><br><br><br>
+
+            <button id="submission" type="submit">Book Day Slot</button>
+        </form>
+        <div class="reserved" id="reserved">
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="CalendarScript.js"></script>
+</body>
+</html>
