@@ -165,8 +165,6 @@ document.getElementById('submission').addEventListener('click', () => {
     let isChecked = document.getElementById("reminder").checked;
     let isCheckedDelay = document.getElementById("reminderdelay").checked;
 
-    console.log("isCheckedDelay:", isCheckedDelay);
-
     if (day) {
         bookedDays[day] = 1;
         reasons[day] = reason;
