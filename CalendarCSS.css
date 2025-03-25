@@ -187,7 +187,8 @@ li{
     background: lightgray;
 }
 
-#submission{
+#submission,
+#unbookButton{
     background: lightgray;
     width: 330px;
 }
