@@ -4,6 +4,7 @@ const reservedE = document.getElementById('reserved');
 const prevB = document.getElementById('prevM');
 const nextB = document.getElementById('nextM');
 const clearB = document.getElementById('clearEventButton');
+const deleteB = document.getElementById('unbookButton')
 
 const bookingE = document.getElementById('bookingHeader');
 const bookingDateE = document.getElementById('bookingDate');
@@ -40,6 +41,23 @@ function saveData() {
     localStorage.setItem(getStorageKey("reasons"), JSON.stringify(reasons));
     localStorage.setItem(getStorageKey("names"), JSON.stringify(names));
 }
+
+function deleteData(day) {
+    if (!day || day < 1 || day > 31) return;
+
+    // Reset the booking data for the selected day
+    bookedDays[day] = 0;
+    reasons[day] = "Unreserved";
+    names[day] = " ";
+
+    // Save the updated data to localStorage
+    saveData();
+
+    // Refresh the calendar to reflect changes
+    updateCalendar();
+
+}
+
 
 function updateCalendar() {
     // Refresh data when rendering the calendar for any reason, to ensure each month's bookings are in the right place
@@ -90,6 +108,7 @@ function updateCalendar() {
 
 // Display the date's booking details when clicking on a date on the calendar
 datesE.addEventListener('click', (event) => {
+    document.getElementById('bookingForm').style.display='block';
     const form = document.getElementById('bookingForm');
     const dayClicked = event.target.id;
     let reservedHTML = "";
@@ -165,14 +184,26 @@ document.getElementById('submission').addEventListener('click', () => {
     let isChecked = document.getElementById("reminder").checked;
     let isCheckedDelay = document.getElementById("reminderdelay").checked;
 
+    console.log("isCheckedDelay:", isCheckedDelay);
+
     if (day) {
         bookedDays[day] = 1;
         reasons[day] = reason;
         names[day] = name;
 
-        activeDate.classList.remove('active');
+        //activeDate.classList.remove('active');
         activeDate.classList.add('booked');
         saveData();
+
+        reservedE.innerHTML = `<ul>
+            <li>Reserved</li>
+            <li>-----------</li>
+            <li>Event:</li>
+            <li>${name}</li>
+            <li>-----------</li>
+            <li>Time:</li>
+            <li>${reason}</li>
+        </ul>`;
 
         form.reset();
     }
@@ -182,7 +213,7 @@ document.getElementById('submission').addEventListener('click', () => {
     }
 
     if(isCheckedDelay){
-        setTimeout(() => {const notify = new Notification("Reminder:\nYour Event, " + name + ", is three days away.")}, 20000);
+        setTimeout(() => {const notify = new Notification("Reminder:\nYour Event, " + name + ", is three days away.")}, 10000);
     }
 
 });
@@ -199,10 +230,20 @@ nextB.addEventListener('click', () => {
 });
 
 clearB.addEventListener('click', () =>{
-localStorage.clear();
+    localStorage.clear();
     updateCalendar();
-    new Notification("TEST");
+    reservedE.innerHTML = ``;
+    document.getElementById('bookingForm').style.display='none';
+    bookingDateE.textContent = " ";
 });
+
+deleteB.addEventListener('click', () =>{
+    const activeDate = document.querySelector('div.active');
+    reservedE.innerHTML = ``;
+    deleteData(activeDate.id);
+    document.getElementById('bookingForm').style.display='none';
+    bookingDateE.textContent = " ";
+})
 
 // Render calendar
 updateCalendar();
