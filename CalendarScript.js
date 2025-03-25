@@ -201,6 +201,7 @@ nextB.addEventListener('click', () => {
 clearB.addEventListener('click', () =>{
 localStorage.clear();
     updateCalendar();
+    new Notification("TEST");
 });
 
 // Render calendar
