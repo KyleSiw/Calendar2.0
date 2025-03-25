@@ -41,10 +41,10 @@
             <div class="bookingHeader" id="bookingHeader"></div>
             <div class="bookingDate" id="bookingDate"></div>
         </div>
-        <form class="bookingForm" id="bookingForm" action="" onsubmit="return false">
+        <form autocomplete="off" class="bookingForm" id="bookingForm" action="" onsubmit="return false">
             <br><br>
             <label for="name">Event: </label>
-            <input type="text" id="name" name="name" placeholder="Enter the event name..." ><br><br><br><br>
+            <input type="text" id="name" name="name" placeholder="Enter the event name..." ><br><br><br>
 
             <label for="reason">Time:</label>
             <input type="text" id="reason" name="reason" value="" placeholder="Enter the time it takes place..." ><br><br><br>
@@ -53,9 +53,11 @@
             <input type="checkbox" id="reminder" name="reminder">
 
             <label for="reminderdelay">3 Day Reminder?</label>
-            <input type="checkbox" id="reminderdelay" name="reminderdelay"><br><br><br>
+            <input type="checkbox" id="reminderdelay" name="reminderdelay"><br><br>
 
-            <button id="submission" type="submit">Book Day Slot</button>
+            <button id="submission" type="submit">Book Day Slot</button><br><br>
+            <button id="unbookButton">Delete Booking</button>
+
         </form>
         <div class="reserved" id="reserved">
 
